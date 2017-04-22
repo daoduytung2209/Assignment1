@@ -50,6 +50,16 @@ def print_items(list_items):
     print("Total expected price for {} items: ${:.2f}".format(len(list_items), sum(item_prices)))
 
 
+# Pseudocode for complete_an_item function:
+# Display the list of required items
+# Prompt user to enter the number of a required item to mark as completed
+# Error-check whether the input entered is out of the item's range or not
+# Display the name of the item which is marked as completed
+# Initialize the for loop to change the status of the item from required "r" to completed "c" if the number user entered
+# is the index of a required item
+# Display Menu
+
+
 def main():
     list_required_items = load_items("items.csv")
     list_required_items.sort(key=itemgetter(2))
