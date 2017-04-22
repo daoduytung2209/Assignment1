@@ -83,3 +83,42 @@ Q - Quit
                 print("Completed items:")
                 print_items(list_completed_items)
             print(menu)
+
+        elif user_input == "A":
+            new_items = []
+            input_name = input("Item name: ")
+            while input_name == "":
+                print("Input can not be blank")
+                input_name = input("Item name: ")
+
+            valid_price = False
+            while not valid_price:
+                try:
+                    input_price = float(input("Price: $"))
+                    while input_price < 0:
+                        print("Price must be >= $0")
+                        input_price = float(input("Price: $"))
+                    valid_price = True
+                except ValueError:
+                    print("Invalid input; enter a valid number")
+
+            valid_priority = False
+            while not valid_priority:
+                try:
+                    input_priority = int(input("Priority: "))
+                    while input_priority not in range(1, 4):
+                        print("Priority must be 1, 2 or 3")
+                        input_priority = int(input("Priority: "))
+                    valid_priority = True
+                except ValueError:
+                    print("Invalid input; enter a valid number")
+
+            print("{}, ${:.2f} (priority {}) added to shopping list".format(input_name, input_price, input_priority))
+
+            new_items.append(input_name)
+            new_items.append(str(input_price))
+            new_items.append(str(input_priority))
+            new_items.append('r')
+            list_required_items.append(new_items)
+            final_list_items.append(new_items)
+            print(menu)
