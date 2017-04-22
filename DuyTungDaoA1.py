@@ -11,6 +11,9 @@
 # Github project link: https://github.com/daoduytung2209/A1
 
 
+from operator import itemgetter
+
+
 # Pseudocode for load_items function:
 # Open items.csv and read the content
 # Initialize for loop that accesses each line in the file
@@ -29,3 +32,36 @@ def load_items(filename):
         list_data.append(split_data)
     input_file.close()
     return list_data
+
+
+def main():
+    list_required_items = load_items("items.csv")
+    list_required_items.sort(key=itemgetter(2))
+    list_completed_items = []
+    final_list_items = load_items("items.csv")
+    print("""Shopping list 1.0 - by Dao Duy Tung
+{} items loaded from items.csv""".format(len(list_required_items)))
+    menu = """Menu:
+R - List required items
+C - List completed items
+A - Add new item
+M - Mark an item as completed
+Q - Quit
+"""
+    print(menu)
+    user_input = input().upper()
+    while user_input != "Q":
+
+        if user_input == "R":
+            if len(list_required_items) == 0:
+                print("No required items")
+            else:
+                print("Required items:")
+            print(menu)
+
+        elif user_input == "C":
+            if len(list_completed_items) == 0:
+                print("No completed items")
+            else:
+                print("Completed items:")
+            print(menu)
