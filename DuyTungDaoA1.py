@@ -34,6 +34,22 @@ def load_items(filename):
     return list_data
 
 
+def print_items(list_items):
+    list_items.sort(key=itemgetter(2))
+    item_names = []
+    item_prices = []
+    item_priorities = []
+
+    for each in list_items:
+        item_names.append(each[0])
+        item_prices.append(float(each[1]))
+        item_priorities.append(each[2])
+
+    for i in range(0, len(list_items)):
+        print("{}. {:<25}${:.2f} ({})".format(i, item_names[i], item_prices[i], item_priorities[i]))
+    print("Total expected price for {} items: ${:.2f}".format(len(list_items), sum(item_prices)))
+
+
 def main():
     list_required_items = load_items("items.csv")
     list_required_items.sort(key=itemgetter(2))
