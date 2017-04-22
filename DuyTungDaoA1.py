@@ -128,10 +128,10 @@ Q - Quit
 
         elif user_input == "A":
             new_items = []
-            input_name = input("Item name: ")
-            while input_name == "":
+            input_name = input("Item name: ").strip()
+            while input_name.strip() == "":
                 print("Input can not be blank")
-                input_name = input("Item name: ")
+                input_name = input("Item name: ").strip()
 
             valid_price = False
             while not valid_price:
@@ -175,3 +175,12 @@ Q - Quit
             print("Invalid menu choice")
             print(menu)
         user_input = input().upper()
+    output_file = open("items.csv", "w")
+    for each in final_list_items:
+        output_file.write(
+            "{},{},{},{}\n".format(each[0], each[1], each[2], each[3]))
+    output_file.close()
+
+    print("{} items saved to items.csv".format(len(final_list_items)))
+    print("Have a nice day :)")
+main()
