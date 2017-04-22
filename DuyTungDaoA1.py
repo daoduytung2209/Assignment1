@@ -73,6 +73,7 @@ Q - Quit
                 print("No required items")
             else:
                 print("Required items:")
+                print_items(list_required_items)
             print(menu)
 
         elif user_input == "C":
@@ -80,4 +81,5 @@ Q - Quit
                 print("No completed items")
             else:
                 print("Completed items:")
+                print_items(list_completed_items)
             print(menu)
