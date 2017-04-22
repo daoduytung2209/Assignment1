@@ -169,5 +169,5 @@ Q - Quit
             if len(list_required_items) == 0:
                 print("No required items")
                 print(menu)
-        else:
-            complete_an_item(final_list_items, list_completed_items, list_required_items)
+            else:
+                complete_an_item(final_list_items, list_completed_items, list_required_items)
