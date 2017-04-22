@@ -59,6 +59,38 @@ def print_items(list_items):
 # is the index of a required item
 # Display Menu
 
+def complete_an_item(final_list_items, list_completed_items, list_required_items):
+    print_items(list_required_items)
+    print("Enter the number of an item to mark as completed")
+
+    valid_number = False
+    while not valid_number:
+        try:
+            item_number = int(input())
+            while item_number not in range(0, len(list_required_items)):
+                print("Invalid item number")
+                item_number = int(input())
+            valid_number = True
+        except ValueError:
+            print("Invalid input; enter a number")
+
+    print("{} marked as completed".format(list_required_items[item_number][0]))
+
+    for i in range(len(final_list_items)):
+        list_required_items[item_number][3] = 'c'
+        if list_required_items[item_number][1] in final_list_items[i]:
+            final_list_items[i] = list_required_items[item_number]
+
+    list_completed_items.append(list_required_items[item_number])
+    list_required_items.remove(list_required_items[item_number])
+    print("""Menu:
+R - List required items
+C - List completed items
+A - Add new item
+M - Mark an item as completed
+Q - Quit
+""")
+
 
 def main():
     list_required_items = load_items("items.csv")
@@ -132,3 +164,10 @@ Q - Quit
             list_required_items.append(new_items)
             final_list_items.append(new_items)
             print(menu)
+
+        elif user_input == "M":
+            if len(list_required_items) == 0:
+                print("No required items")
+                print(menu)
+        else:
+            complete_an_item(final_list_items, list_completed_items, list_required_items)
