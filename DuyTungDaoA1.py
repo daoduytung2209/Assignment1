@@ -78,11 +78,11 @@ def complete_an_item(final_list_items, list_completed_items, list_required_items
     valid_number = False
     while not valid_number:  # Error-check user inputs for the value error of input number
         try:
-            item_number = int(input())
+            item_number = int(input(">>>"))
             while item_number not in range(0, len(list_required_items)):  # Error-check user inputs if the input is out
                 # of item's range
                 print("Invalid item number")
-                item_number = int(input())
+                item_number = int(input(">>>"))
             valid_number = True
         except ValueError:
             print("Invalid input; enter a number")
