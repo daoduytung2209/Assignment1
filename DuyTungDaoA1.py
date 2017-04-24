@@ -27,15 +27,16 @@ Pseudocode for load_items function:
 """
 
 
-def load_items(filename):  # Load the items.csv file and store the result in list_data to pass to any functions that
+def load_items(filename):  # Load the data file and store the result in list_data to pass to any functions that
     # need access to it
-    list_data = []  # List of spilt data from the file
-    input_file = open(filename, "r")  # Open the file to read the content inside
+    list_data = []  # List of spilt data
+    input_file = open(filename, "r")  # Open the data file to read the content inside
     for each in input_file:
         if "\n" in each:
             each = each.replace("\n", "")  # Replace "\n" by "" in each line
-        split_data = each.split(",")  # Split each line in the file by the comma
-        list_data.append(split_data)
+        split_data = each.split(",")  # Split each line in the file by the comma to transform each line into
+        # list format ['name','price','priotity','r']
+        list_data.append(split_data)  # Add the split data to the list of spilt data
     input_file.close()  # Close the file
     return list_data
 
@@ -109,10 +110,12 @@ Q - Quit""")
 
 
 def main():
-    list_required_items = load_items("items.csv")  # List of required items
+    list_required_items = load_items("items.csv")  # List of required items # Call the load_items function with
+    # items.csv as the parameter
     list_required_items.sort(key=itemgetter(2))  # Sort the list required items by priority
     list_completed_items = []  # List of completed items
-    final_list_items = load_items("items.csv")  # List of total amount of items
+    final_list_items = load_items("items.csv")  # List of total amount of items # Call the load_items function with
+    # items.csv as the parameter
     print("""Shopping list 1.0 - by Dao Duy Tung
 {} items loaded from items.csv""".format(len(list_required_items)))  # Print total amount of items in items.csv file
     menu = """Menu:
